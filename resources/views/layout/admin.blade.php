@@ -35,14 +35,14 @@
   </main>
    @include('partials.sidebarleft')
   <!--   Core JS Files   -->
-  @yield('js')
+ 
   <script src="{{asset('dashboard/assets/js/core/popper.min.js')}}"></script>
   <script src="{{asset('dashboard/assets/js/core/bootstrap.min.js')}}"></script>
   <script src="{{asset('dashboard/assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
   <script src="{{asset('dashboard/assets/js/plugins/smooth-scrollbar.min.js')}}"></script>
   <script src="{{asset('dashboard/assets/js/plugins/chartjs.min.js')}}"></script>
   <script src="{{asset('dashboard/layout/admin.js')}}"></script>
-  
+  @yield('js')
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
