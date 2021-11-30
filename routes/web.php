@@ -128,7 +128,7 @@ Route::prefix('users')->group(function () {
         'as'=>'users.delete',
         'uses'=>'AdminUserController@delete'
     ]);
-                            
+});                         
 Route::prefix('UserHome')->group(function(){
     Route::get('', [
         'as'=>'home.index',
