@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-
 use Illuminate\Http\Request;
 use App\User;
+use Log;    
 class AdminController extends Controller
 {
     public function index()
