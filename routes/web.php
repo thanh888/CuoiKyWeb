@@ -156,39 +156,7 @@ Route::post('/delivery', [
     'as' => 'select_delivery',
     'uses' => 'AdminCityController@select_delivery'
 ]);
-
-//User
-<<<<<<< Updated upstream
-Route::prefix('users')->group(function () {
-    Route::get('/',[
-        'as'=>'users.index',
-        'uses'=>'AdminUserController@index'
-    ]);
-    Route::get('/create',[
-        'as'=>'users.create',
-        'uses'=>'AdminUserController@create'
-    ]);
-    Route::post('/store',[
-        'as'=>'users.store',
-        'uses'=>'AdminUserController@store'
-    ]);
-    Route::get('/edit/{id}',[
-        'as'=>'users.edit',
-        'uses'=>'AdminUserController@edit'
-                         ]);
-    Route::post('/update/{id}',[
-        'as'=>'users.update',
-        'uses'=>'AdminUserController@update'
-    ]);
-
-    Route::get('/delete/{id}',[
-        'as'=>'users.delete',
-        'uses'=>'AdminUserController@delete'
-    ]);
-});                         
-=======
-                            
->>>>>>> Stashed changes
+                 
 Route::prefix('UserHome')->group(function(){
     Route::get('', [
         'as'=>'home.index',
@@ -221,14 +189,3 @@ Route::prefix('UserHome')->group(function(){
         ]);
     });
 });
-//Role
-
-<<<<<<< Updated upstream
-     Route::get('/delete/{id}',[
-        'as'=>'roles.delete',
-        'uses'=>'AdminRoleController@delete'
-                         ]);
-    
-});
-=======
->>>>>>> Stashed changes
