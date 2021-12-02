@@ -77,7 +77,7 @@ class AdminCityController extends Controller
     {
         $apartmentnumber=$this->apartmentnumber->find($id);
         $city=$this->city->all();
-        return view('admin.city.edit',compact('city.update','city'));
+        return view('admin.city.edit',compact('apartmentnumber','city'));
     }
     public function update($id,Request $request)
     {
