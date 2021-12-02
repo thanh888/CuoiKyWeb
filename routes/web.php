@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('UserHome.pages.home');
 });
 Route::prefix('admin')->group(function () {
     Route::get('/', [
@@ -330,6 +330,45 @@ Route::prefix('tin')->group(function () {
         'uses'=>'AdminTinController@delete',
         
 
+                         ]);
+    
+});
+Route::prefix('UserContact')->group(function(){
+    Route::get('/', [
+        'as'=>'contact.index',
+        'uses'=>'Contact@index'
+    ]);
+    Route::post('/post-contact', [
+        'as'=>'contact.post',
+        'uses'=>'Contact@post'
+    ]);
+});
+//Role
+Route::prefix('roles')->group(function () {
+    Route::get('/',[
+        'as'=>'roles.index',
+        'uses'=>'AdminRoleController@index'
+                         ]);
+    Route::get('/create',[
+        'as'=>'roles.create',
+        'uses'=>'AdminRoleController@create'
+                         ]);
+    Route::post('/store',[
+        'as'=>'roles.store',
+        'uses'=>'AdminRoleController@store'
+                         ]);
+    Route::get('/edit/{id}',[
+        'as'=>'roles.edit',
+        'uses'=>'AdminRoleController@edit'
+                         ]);
+    Route::post('/update/{id}',[
+        'as'=>'roles.update',
+        'uses'=>'AdminRoleController@update'
+                         ]);
+
+     Route::get('/delete/{id}',[
+        'as'=>'roles.delete',
+        'uses'=>'AdminRoleController@delete'
                          ]);
     
 });
