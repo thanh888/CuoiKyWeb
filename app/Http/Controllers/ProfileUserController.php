@@ -10,4 +10,8 @@ class ProfileUserController extends Controller
     {
         return view('UserHome.profile.index');
     }
+    public function postings()
+    {
+        return view('UserHome.profile.postings');
+    }
 }

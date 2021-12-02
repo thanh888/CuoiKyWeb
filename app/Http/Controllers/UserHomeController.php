@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserHomeController extends Controller
 {
@@ -18,7 +19,7 @@ class UserHomeController extends Controller
     }
     public function PostLogin(Request $request)
     {
-        $remember= $request->has('rememer') ? true : false;
+        $remember= $request->has('remember') ? true : false;
         if (Auth::attempt([
                 'email'=> $request->email,
                 'password'=> $request->password
@@ -44,8 +45,14 @@ class UserHomeController extends Controller
         User::create([
             'name'=> $request->name,
             'email'=> $request->email,
-            'password'=> $request->password,
+            'password'=> Hash::make($request-> password),
         ]);
         return redirect()->to(route('home.index'));
+    }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->to(route('home.index'));
+
     }
 }
