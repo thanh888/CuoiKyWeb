@@ -23,7 +23,7 @@
                     <input name="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
                   </div>
                   <div class="form-check form-switch">
-                    <input class="form-check-input" name="remember" type="checkbox" id="rememberMe" checked="">
+                    <input class="form-check-input" name="remember" type="checkbox" id="rememberMe">
                     <label  class="form-check-label" for="rememberMe">Remember me</label>
                   </div>
                   <div class="text-center">

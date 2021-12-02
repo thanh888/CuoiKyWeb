@@ -162,12 +162,23 @@ Route::prefix('UserHome')->group(function(){
         'as'=>'home.index',
         'uses'=>'UserHomeController@index'
     ]);
+    
+    Route::get('/logout', [
+        'as'=>'home.logout',
+        'uses'=>'UserHomeController@logout'
+    ]);
+
     Route::prefix('profile')->group(function(){
         Route::get('',[
             'as'=> 'profile.index',
             'uses'=> 'ProfileUserController@index'
         ]);
+        Route::get('Postings', [
+            'as'=> 'profile.postings',
+            'uses'=> 'ProfileUserController@postings'
+        ]);
     });
+
     Route::prefix('login')->group(function(){
         Route::get('',[
             'as'=>'home.login',
