@@ -11,9 +11,9 @@
             var ma_id=$(this).val();
             var _token=$('input[name="_token"]').val();
             var result='';  
-            alert(action);
-            alert(ma_id);
-            alert(_token);
+            // alert(action);
+            // alert(ma_id);
+            // alert(_token);
                 if (action==='city') 
                 {
                   result='province';

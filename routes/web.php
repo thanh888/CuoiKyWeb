@@ -74,6 +74,10 @@ Route::post('/delivery', [
     'as' => 'select_delivery',
     'uses' => 'AdminCityController@select_delivery'
 ]);
+Route::post('/delivery/sonha', [
+    'as' => 'select_delivery',
+    'uses' => 'AdminTinController@select_delivery'
+]);
 
 Route::prefix('admin/city')->group(function () {
     Route::get('/', [
@@ -128,6 +132,7 @@ Route::prefix('users')->group(function () {
         'as'=>'users.delete',
         'uses'=>'AdminUserController@delete'
     ]);
+});
                             
 Route::prefix('UserHome')->group(function(){
     Route::get('', [
@@ -161,6 +166,80 @@ Route::prefix('roles')->group(function () {
      Route::get('/delete/{id}',[
         'as'=>'roles.delete',
         'uses'=>'AdminRoleController@delete'
+                         ]);
+    
+});
+//setting
+Route::prefix('settings')->group(function () {
+    Route::get('/',[
+        'as'=>'settings.index',
+        'uses'=>'AdminSettingController@index',
+        
+                         ]);
+    Route::get('/create',[
+        'as'=>'settings.create',
+        'uses'=>'AdminSettingController@create',
+        
+
+                         ]);
+    Route::post('/store',[
+        'as'=>'settings.store',
+        'uses'=>'AdminSettingController@store'
+        
+                         ]);
+    Route::get('/edit/{id}',[
+        'as'=>'settings.edit',
+        'uses'=>'AdminSettingController@edit',
+        
+
+                         ]);
+    Route::post('/update/{id}',[
+        'as'=>'settings.update',
+        'uses'=>'AdminSettingController@update'
+                         ]);
+
+     Route::get('/delete/{id}',[
+        'as'=>'settings.delete',
+        'uses'=>'AdminSettingController@delete',
+        
+
+                         ]);
+    
+});
+//Tin
+Route::prefix('tin')->group(function () {
+    Route::get('/',[
+        'as'=>'tin.index',
+        'uses'=>'AdminTinController@index',
+        
+                         ]);
+    Route::get('/create',[
+        'as'=>'tin.create',
+        'uses'=>'AdminTinController@create',
+        
+
+                         ]);
+    Route::post('/store',[
+        'as'=>'tin.store',
+        'uses'=>'AdminTinController@store'
+        
+                         ]);
+    Route::get('/edit/{id}',[
+        'as'=>'tin.edit',
+        'uses'=>'AdminTinController@edit',
+        
+
+                         ]);
+    Route::post('/update/{id}',[
+        'as'=>'tin.update',
+        'uses'=>'AdminTinController@update'
+                         ]);
+
+     Route::get('/delete/{id}',[
+        'as'=>'tin.delete',
+        'uses'=>'AdminTinController@delete',
+        
+
                          ]);
     
 });

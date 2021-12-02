@@ -44,7 +44,10 @@
                           @foreach($role as $roleItem)
                           <tr>
                             <th scope="row">{{$roleItem->id}}</th>
-                            <td>{{$roleItem->name}}</td>
+                            <td>
+                            <span class="badge badge-sm bg-gradient-success">{{$roleItem->name}}</span>  
+
+                            </td>
                             <td>{{$roleItem->display_name}}</td>
                             
                             <td>

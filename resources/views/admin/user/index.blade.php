@@ -45,9 +45,12 @@
                           @foreach($users as $usersItem)
                           <tr>
                             <th scope="row">{{$usersItem->id}}</th>
-                            <td>{{$usersItem->name}}</td>
-                            <td>{{$usersItem->email}}</td>
-                            
+                            <td>
+                              <span class="badge badge-sm bg-gradient-success">{{$usersItem->name}}</span>  
+                            </td>
+                            <td>
+                            <span class="badge badge-sm bg-gradient-secondary">{{$usersItem->email}}</span>  
+                            </td>
                             <td>
                                <a href="{{route('users.edit',['id'=>$usersItem->id])}}"class="btn btn-default">Edit</a>
                                <a href=""data-url="{{route('users.delete',['id'=>$usersItem->id])}}"class="btn btn-danger actionDelete">Delete</a>
