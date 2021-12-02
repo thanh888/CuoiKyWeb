@@ -134,6 +134,21 @@
           <li class="nav-item">
             <a class="nav-link " href="contact.html">Contact</a>
           </li>
+          @if (auth()->user())
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->name }}</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{ route('profile.index') }}"><i class="fa fa-user pr-2"></i> Profile</a>
+                  <a class="dropdown-item" href="{{route('home.logout')}}"><i class="fa fa-power-off pr-2"></i> Log out</a>
+              </div>
+            </li>
+              
+          @else
+          <li class="nav-item">
+            <a class="nav-link " href="{{ route('home.login') }}">Log in</a>
+          </li>
+              
+          @endif
         </ul>
       </div>
 
