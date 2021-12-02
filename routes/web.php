@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('UserHome.pages.home');
 });
 Route::prefix('admin')->group(function () {
     Route::get('/', [
@@ -133,6 +133,16 @@ Route::prefix('UserHome')->group(function(){
     Route::get('', [
         'as'=>'home.index',
         'uses'=>'UserHomeController@index'
+    ]);
+});
+Route::prefix('UserContact')->group(function(){
+    Route::get('/', [
+        'as'=>'contact.index',
+        'uses'=>'Contact@index'
+    ]);
+    Route::post('/post-contact', [
+        'as'=>'contact.post',
+        'uses'=>'Contact@post'
     ]);
 });
 //Role
