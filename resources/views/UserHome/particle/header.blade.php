@@ -122,7 +122,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link " href="blog-grid.html">Blog</a>
+            <a class="nav-link " href="{{ route('blog.index') }}">Blog</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -133,9 +133,6 @@
               <a class="dropdown-item " href="agents-grid.html">Agents Grid</a>
               <a class="dropdown-item " href="agent-single.html">Agent Single</a>
             </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " href="contact.html">Contact</a>
           </li>
           @if (auth()->user())
             <li class="nav-item dropdown">
