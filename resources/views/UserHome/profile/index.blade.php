@@ -2,139 +2,50 @@
 @section('content')
 <div class="container-fluid py-4">
   <div class="row">
-    <div class="col-12 mt-4">
-      <div class="card mb-4">
-        <div class="card-header pb-0 p-3">
-          <h6 class="mb-1">Projects</h6>
-          <p class="text-sm">Architects design houses</p>
-        </div>
         <div class="card-body p-3">
           <div class="row">
-            <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-              <div class="card card-blog card-plain">
-                <div class="position-relative">
-                  <a class="d-block shadow-xl border-radius-xl">
-                    <img src="{{asset('frontend/template/profile/assets/img/home-decor-1.jpg')}}" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
-                  </a>
-                </div>
-                <div class="card-body px-1 pb-0">
-                  <p class="text-gradient text-dark mb-2 text-sm">Project #2</p>
-                  <a href="javascript:;">
-                    <h5>
-                      Modern
-                    </h5>
-                  </a>
-                  <p class="mb-4 text-sm">
-                    As Uber works through a huge amount of internal management turmoil.
-                  </p>
-                  <div class="d-flex align-items-center justify-content-between">
-                    <button type="button" class="btn btn-outline-primary btn-sm mb-0">View Project</button>
-                    <div class="avatar-group mt-2">
-                      <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Elena Morison">
-                        <img alt="Image placeholder" src="{{asset('frontend/template/profile/assets/img/team-1.jpg')}}">
-                      </a>
-                      <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Milly">
-                        <img alt="Image placeholder" src="{{asset('frontend/template/profile/assets/img/team-2.jpg')}}">
-                      </a>
-                      <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nick Daniel">
-                        <img alt="Image placeholder" src="{{asset('frontend/template/profile/assets/img/team-3.jpg')}}">
-                      </a>
-                      <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Peterson">
-                        <img alt="Image placeholder" src="{{asset('frontend/template/profile/assets/img/team-4.jpg')}}">
+            <div class="col-12 col-xl-12">
+              <div class="card h-100">
+                <div class="card-header pb-0 p-3">
+                  <div class="row">
+                    <div class="col-md-8 d-flex align-items-center">
+                      <h6 class="mb-0">Profile Information</h6>
+                    </div>
+                    <div class="col-md-4 text-end">
+                      <a href="{{ route('profile.update') }}">
+                        <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="" aria-hidden="true" data-bs-original-title="Edit Profile" aria-label="Edit Profile"></i><span class="sr-only">Edit Profile</span>
                       </a>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-              <div class="card card-blog card-plain">
-                <div class="position-relative">
-                  <a class="d-block shadow-xl border-radius-xl">
-                    <img src="{{asset('frontend/template/profile/assets/img/home-decor-2.jpg')}}" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
-                  </a>
-                </div>
-                <div class="card-body px-1 pb-0">
-                  <p class="text-gradient text-dark mb-2 text-sm">Project #1</p>
-                  <a href="javascript:;">
-                    <h5>
-                      Scandinavian
-                    </h5>
-                  </a>
-                  <p class="mb-4 text-sm">
-                    Music is something that every person has his or her own specific opinion about.
+                <div class="card-body p-3">
+                  <p class="text-sm">
+                    {{ $profile->description }}
                   </p>
-                  <div class="d-flex align-items-center justify-content-between">
-                    <button type="button" class="btn btn-outline-primary btn-sm mb-0">View Project</button>
-                    <div class="avatar-group mt-2">
-                      <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nick Daniel">
-                        <img alt="Image placeholder" src="{{asset('frontend/template/profile/assets/img/team-3.jpg')}}">
+                  <hr class="horizontal gray-light my-4">
+                  <ul class="list-group">
+                    <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Full Name:</strong> &nbsp; {{ $profile->fullname }}</li>
+                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile:</strong> &nbsp; {{ $profile->phone }}</li>
+                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp; {{ $profile->email }}</li>
+                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Location:</strong> &nbsp;{{ $profile->location }}</li>
+                    <li class="list-group-item border-0 ps-0 pb-0">
+                      <strong class="text-dark text-sm">Social:</strong> &nbsp;
+                      <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="{{ $profile->linkfb }}">
+                        <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
                       </a>
-                      <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Peterson">
-                        <img alt="Image placeholder" src="{{asset('frontend/template/profile/assets/img/team-4.jpg')}}">
+                      <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
+                        <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
                       </a>
-                      <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Elena Morison">
-                        <img alt="Image placeholder" src="{{asset('frontend/template/profile/assets/img/team-1.jpg')}}">
+                      <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
+                        <i class="fab fa-instagram fa-lg" aria-hidden="true"></i>
                       </a>
-                      <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Milly">
-                        <img alt="Image placeholder" src="{{asset('frontend/template/profile/assets/img/team-2.jpg')}}">
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-              <div class="card card-blog card-plain">
-                <div class="position-relative">
-                  <a class="d-block shadow-xl border-radius-xl">
-                    <img src="{{asset('frontend/template/profile/assets/img/home-decor-3.jpg')}}" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
-                  </a>
-                </div>
-                <div class="card-body px-1 pb-0">
-                  <p class="text-gradient text-dark mb-2 text-sm">Project #3</p>
-                  <a href="javascript:;">
-                    <h5>
-                      Minimalist
-                    </h5>
-                  </a>
-                  <p class="mb-4 text-sm">
-                    Different people have different taste, and various types of music.
-                  </p>
-                  <div class="d-flex align-items-center justify-content-between">
-                    <button type="button" class="btn btn-outline-primary btn-sm mb-0">View Project</button>
-                    <div class="avatar-group mt-2">
-                      <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Peterson">
-                        <img alt="Image placeholder" src="{{asset('frontend/template/profile/assets/img/team-4.jpg')}}">
-                      </a>
-                      <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nick Daniel">
-                        <img alt="Image placeholder" src="{{asset('frontend/template/profile/assets/img/team-3.jpg')}}">
-                      </a>
-                      <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Milly">
-                        <img alt="Image placeholder" src="{{asset('frontend/template/profile/assets/img/team-2.jpg')}}">
-                      </a>
-                      <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Elena Morison">
-                        <img alt="Image placeholder" src="{{asset('frontend/template/profile/assets/img/team-1.jpg')}}">
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-              <div class="card h-100 card-plain border">
-                <div class="card-body d-flex flex-column justify-content-center text-center">
-                  <a href="javascript:;">
-                    <i class="fa fa-plus text-secondary mb-3"></i>
-                    <h5 class=" text-secondary"> New project </h5>
-                  </a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
   </div>
   
 </div>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InforUserPosting;
 use App\User;
+use App\Models\Blogs;
 use Illuminate\Http\Request;
 use App\Models\Slider;
 use App\Models\Tin;
@@ -72,7 +74,11 @@ class UserHomeController extends Controller
             'email'=> $request->email,
             'password'=> Hash::make($request-> password),
         ]);
-        return redirect()->to(route('home.index'));
+        InforUserPosting::create([
+            'name'=> $request->name,
+            'email'=> $request->email,
+        ]);
+        return redirect()->to(route('home.login'));
     }
     public function logout()
     {

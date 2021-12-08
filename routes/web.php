@@ -287,6 +287,14 @@ Route::prefix('UserHome')->group(function(){
             'as'=> 'profile.index',
             'uses'=> 'ProfileUserController@index'
         ]);
+        Route::get('/update-profile',[
+            'as'=> 'profile.update',
+            'uses'=> 'ProfileUserController@update'
+        ]);
+        Route::post('/pupdate-profile',[
+            'as'=> 'profile.pupdate',
+            'uses'=> 'ProfileUserController@postupdate'
+        ]);
         Route::get('Postings', [
             'as'=> 'profile.postings',
             'uses'=> 'ProfileUserController@postings'
@@ -342,7 +350,7 @@ Route::prefix('settings')->group(function () {
     Route::post('/update/{id}',[
         'as'=>'settings.update',
         'uses'=>'AdminSettingController@update'
-                         ]);
+    ]);
 
      Route::get('/delete/{id}',[
         'as'=>'settings.delete',
@@ -409,6 +417,19 @@ Route::prefix('Bài viết')->group(function(){
         'as'=>'post.store',
         'uses'=>'PostingController@store'
     ]);
+    Route::get('/Chỉnh sửa bài/{id}', [
+        'as'=>'post.edit',
+        'uses'=>'PostingController@edit'
+    ]);
+    Route::post('/Chỉnh sửa bài/{id}', [
+        'as'=>'post.update',
+        'uses'=>'PostingController@update'
+    ]);
+    Route::get('/Xoa/{id}', [
+        'as'=>'post.delete',
+        'uses'=>'PostingController@delete'
+    ]);
+});
 Route::prefix('UserBlog')->group(function(){
     Route::get('/', [
         'as'=>'blog.index',
@@ -420,38 +441,3 @@ Route::prefix('UserBlog')->group(function(){
     // ]);
 });
 //Role
-Route::prefix('roles')->group(function () {
-    Route::get('/',[
-        'as'=>'roles.index',
-        'uses'=>'AdminRoleController@index'
-                         ]);
-    Route::get('/create',[
-        'as'=>'roles.create',
-        'uses'=>'AdminRoleController@create'
-                         ]);
-    Route::post('/store',[
-        'as'=>'roles.store',
-        'uses'=>'AdminRoleController@store'
-                         ]);
-    Route::get('/edit/{id}',[
-        'as'=>'roles.edit',
-        'uses'=>'AdminRoleController@edit'
-                         ]);
-    Route::post('/update/{id}',[
-        'as'=>'roles.update',
-        'uses'=>'AdminRoleController@update'
-                         ]);
-
-     Route::get('/delete/{id}',[
-        'as'=>'roles.delete',
-        'uses'=>'AdminRoleController@delete'
-                         ]);
-                        });
-});
-//Search
-Route::prefix('Search')->group(function () {
-    Route::post('/',[
-        'as'=>'search',
-        'uses'=>'SearchController@search'
-                         ]);
-});
