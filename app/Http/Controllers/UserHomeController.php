@@ -5,20 +5,25 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\Slider;
+use App\Models\Tin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserHomeController extends Controller
 {
     private $slider;
-    public function __construct(Slider $slider)
+    private $postings;
+    public function __construct(Slider $slider, Tin $posting)
     {
           $this->slider=$slider;
+          $this->posting=$posting;
     }
     public function index()
     {
          $slider=$this->slider->all();
-        return view('UserHome.pages.home',compact('slider'));
+         $postings= Tin::all();
+        //  dd($postings->images->name);
+        return view('UserHome.pages.home',compact('slider', 'postings'));
     }
     public function login()
     {

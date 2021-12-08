@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\DB;
-use Log;
+use Illuminate\Support\Facades\Log;
 use App\Traits\DeleteModelTrait;
 
 

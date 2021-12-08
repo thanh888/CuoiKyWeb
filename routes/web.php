@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('UserHome.pages.home');
-});
+// Route::get('/', function () {
+//     return view('UserHome.pages.home');
+// });
 Route::prefix('admin')->group(function () {
     Route::get('/', [
         'as' => 'admin.login',
@@ -160,6 +160,10 @@ Route::post('/delivery/sonha', [
     'as' => 'select_delivery',
     'uses' => 'AdminTinController@select_delivery'
 ]);
+Route::post('/delivery/songay', [
+    'as' => 'select_delivery',
+    'uses' => 'AdminTinController@select_day'
+]);
 
 Route::prefix('admin/city')->group(function () {
     Route::get('/', [
@@ -302,35 +306,28 @@ Route::prefix('tin')->group(function () {
         'as'=>'tin.index',
         'uses'=>'AdminTinController@index',
         
-                         ]);
+        ]);
     Route::get('/create',[
         'as'=>'tin.create',
         'uses'=>'AdminTinController@create',
-        
-
-                         ]);
+        ]);
     Route::post('/store',[
         'as'=>'tin.store',
         'uses'=>'AdminTinController@store'
-        
-                         ]);
+        ]);
     Route::get('/edit/{id}',[
         'as'=>'tin.edit',
         'uses'=>'AdminTinController@edit',
-        
-
-                         ]);
+        ]);
     Route::post('/update/{id}',[
         'as'=>'tin.update',
         'uses'=>'AdminTinController@update'
-                         ]);
+        ]);
 
      Route::get('/delete/{id}',[
         'as'=>'tin.delete',
         'uses'=>'AdminTinController@delete',
-        
-
-                         ]);
+        ]);
     
 });
 Route::prefix('UserContact')->group(function(){
@@ -341,6 +338,20 @@ Route::prefix('UserContact')->group(function(){
     Route::post('/post-contact', [
         'as'=>'contact.post',
         'uses'=>'Contact@post'
+    ]);
+});
+Route::prefix('Bài viết')->group(function(){
+    Route::get('/Bai viet/{id}', [
+        'as'=>'post.detail',
+        'uses'=>'PostingController@index'
+    ]);
+    Route::get('/Đăng bài', [
+        'as'=>'post.create',
+        'uses'=>'PostingController@create'
+    ]);
+    Route::post('/Đăng bài', [
+        'as'=>'post.store',
+        'uses'=>'PostingController@store'
     ]);
 });
 //Role
