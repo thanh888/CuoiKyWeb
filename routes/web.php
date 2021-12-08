@@ -18,9 +18,14 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::prefix('admin')->group(function () {
     Route::get('/', [
+        'as' => 'admin.home',
+        'uses' => 'AdminController@index'
+    ]);
+    Route::get('/login', [
         'as' => 'admin.login',
         'uses' => 'AdminController@loginAdmin'
     ]);
+    
     Route::post('/login/ok', [
         'as' => 'admin.loginpost',
         'uses' => 'AdminController@postLoginAdmin'
@@ -37,10 +42,7 @@ Route::prefix('admin')->group(function () {
         'as' => 'admin.loguot',
         'uses' => 'AdminController@logoutAdmin'
     ]);
-    Route::get('/', [
-        'as' => 'admin.home',
-        'uses' => 'AdminController@index'
-    ]);
+    
     Route::prefix('slider')->group(function () {
         Route::get('/slider', [
             'as' => 'admin.slider.index',
@@ -149,6 +151,38 @@ Route::prefix('admin')->group(function () {
             'uses'=>'AdminUserController@delete'
         ]);
     
+    });
+    Route::prefix('adminblog')->group(function(){
+        Route::get('/',[
+            'as'=> 'adminblog.index',
+            'uses'=> 'AdminBlog@index'
+        ]);
+        Route::get('/add_blog',[
+            'as'=> 'adminblog.add',
+            'uses'=> 'AdminBlog@add'
+        ]);
+        Route::post('/add_blog/store',[
+            'as'=> 'adminblog.addstore',
+            'uses'=> 'AdminBlog@addstore'
+        ]);
+        Route::get('/update_blog/{id}',[
+            'as'=> 'adminblog.update',
+            'uses'=> 'AdminBlog@update'
+        ]);
+        Route::post('/update_blgpost/{id}',[
+            'as'=> 'adminblog.pupdate',
+            'uses'=> 'AdminBlog@pupdate'
+        ]);
+    });
+    Route::prefix('admincontact')->group(function(){
+        Route::get('/',[
+            'as'=> 'admincontact.index',
+            'uses'=> 'AdminContact@index'
+        ]);
+        Route::get('/view-admin_contact/{id}',[
+            'as'=> 'admincontact.view',
+            'uses'=> 'AdminContact@view'
+        ]);
     });
 });
 //Tỉnh thành phố 
@@ -353,6 +387,15 @@ Route::prefix('Bài viết')->group(function(){
         'as'=>'post.store',
         'uses'=>'PostingController@store'
     ]);
+Route::prefix('UserBlog')->group(function(){
+    Route::get('/', [
+        'as'=>'blog.index',
+        'uses'=>'Blog@index'
+    ]);
+    // Route::post('/post-contact', [
+    //     'as'=>'contact.post',
+    //     'uses'=>'Contact@post'
+    // ]);
 });
 //Role
 Route::prefix('roles')->group(function () {

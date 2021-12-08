@@ -117,6 +117,14 @@
             <a class="nav-link " href="{{ route('contact.index') }}">Contact</a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link " href="property-grid.html">Property</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link " href="{{ route('blog.index') }}">Blog</a>
+          </li>
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bất động sản</a>
             <div class="dropdown-menu">
