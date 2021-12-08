@@ -32,16 +32,16 @@ class UserHomeController extends Controller
         $needs= [];
         foreach ($datas as $data ) {
             if ($datas->contains($data->parent_id)) {
+                $needs[]= $data;
                 continue;
             }
-            $needs[]= $data;
         }
         
         $tinnew=$this->posting->latest()->take(3)->get();
          $slider=$this->slider->all();
          $postings= Tin::all();
         //  dd($postings->images->name);
-        return view('UserHome.pages.home',compact('slider', 'postings','tinnew','needs'));
+        return view('UserHome.pages.home',compact('slider', 'postings','tinnew','needs', 'blogs'));
     }
     public function login()
     {

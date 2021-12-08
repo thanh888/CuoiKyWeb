@@ -441,3 +441,14 @@ Route::prefix('UserBlog')->group(function(){
     // ]);
 });
 //Role
+//Search
+Route::prefix('Search')->group(function(){
+    Route::get('/', [
+        'as'=>'search',
+        'uses'=>'SearchController@search'
+    ]);
+    // Route::post('/post-contact', [
+    //     'as'=>'contact.post',
+    //     'uses'=>'Contact@post'
+    // ]);
+});

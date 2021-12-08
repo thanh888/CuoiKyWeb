@@ -84,12 +84,7 @@
                 @endforeach
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link " href="{{ route('blog.index') }}">Blog</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " href="{{ route('contact.index') }}">Contact</a>
-          </li>
+          
           <li class="nav-item">
             <a class="nav-link " style="color: #2eca6a;" href="{{ route('post.create') }}">Đăng tin</a>
           </li>
