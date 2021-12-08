@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Models\Blogs;
 use Illuminate\Http\Request;
 use App\Models\Slider;
 use App\Models\Tin;
@@ -20,10 +21,11 @@ class UserHomeController extends Controller
     }
     public function index()
     {
+        $blogs = Blogs::all()->take(3);
          $slider=$this->slider->all();
          $postings= Tin::all();
         //  dd($postings->images->name);
-        return view('UserHome.pages.home',compact('slider', 'postings'));
+        return view('UserHome.pages.home',compact('slider', 'postings','blogs'));
     }
     public function login()
     {

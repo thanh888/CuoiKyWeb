@@ -10,4 +10,5 @@ class Blog extends Controller
         $data= Blogs::paginate(6);
         return view('UserHome.pages.blog',compact('data'));
     }
+    
 }
