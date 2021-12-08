@@ -94,7 +94,7 @@ class PostingController extends Controller
                 'phone'=> $request->phone
             ]);
             $dataTinCreate=[
-                'user_id'=>auth()->id(),
+                'user_id'=>auth()->user()->id,
                 'housingtype_id'=> $request->housingtype,
                 'need_id'=> $request->need,
                 'title'=> $request->title,
@@ -134,7 +134,7 @@ class PostingController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('tin.index');
+            return redirect()->route('profile.postings');
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error('Message' . $exception->getMessage() . 'Line:' . $exception->getLine());
@@ -207,10 +207,8 @@ class PostingController extends Controller
                     ]);
                 }
             }
-
-
             DB::commit();
-            return redirect()->route('tin.index');
+            return redirect()->route('post.detail',['id'=> $id]);
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error('Message' . $exception->getMessage() . 'Line:' . $exception->getLine());
@@ -236,7 +234,6 @@ class PostingController extends Controller
     public function index($id)
     {
         $post=Tin::find($id);
-        // dd($post->images);
         return view('UserHome.pages.postingdetail', compact('post'));
     }
 }

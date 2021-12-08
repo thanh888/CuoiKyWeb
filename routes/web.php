@@ -375,7 +375,7 @@ Route::prefix('UserContact')->group(function(){
     ]);
 });
 Route::prefix('Bài viết')->group(function(){
-    Route::get('/Bai viet/{id}', [
+    Route::get('/Chi tiết/{id}', [
         'as'=>'post.detail',
         'uses'=>'PostingController@index'
     ]);

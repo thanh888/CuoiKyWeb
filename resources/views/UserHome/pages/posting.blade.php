@@ -334,10 +334,10 @@
       </div>
     </div>
 </div>
-<div class="container mt-3">
-    
-    <button type="submit"class=" btn btn-success update add_delivery">Đăng tin</button>
-</div>
+  <div class="container mt-3">
+      
+      <button type="submit"class=" btn btn-success update add_delivery">Đăng tin</button>
+  </div>
 
 </form>
 

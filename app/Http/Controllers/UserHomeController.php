@@ -62,11 +62,7 @@ class UserHomeController extends Controller
             'email'=> $request->email,
             'password'=> Hash::make($request-> password),
         ]);
-        InforUserPosting::create([
-            'name'=> $request->name,
-            'email'=> $request->email,
-        ]);
-        return redirect()->to(route('home.index'));
+        return redirect()->to(route('home.login'));
     }
     public function logout()
     {

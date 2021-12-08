@@ -356,7 +356,10 @@
         </div>
       </div>
     </div>
-    <button type="submit"class="btn btn-success update add_delivery">Sửa tin</button>
+    <div class="container">
+      <button type="submit"class="btn btn-success update add_delivery">Sửa tin</button>
+      
+    </div>
   </form>
 
 @endsection

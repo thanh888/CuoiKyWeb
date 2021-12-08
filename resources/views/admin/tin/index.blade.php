@@ -182,11 +182,14 @@
                     </tr>
                       
                   @endforeach
+
                 </tbody>
               </table>
               
               
               </div>
+              {{ $tin->links() }}
+
             </div>
           
              
@@ -197,10 +200,4 @@
     </div>
 
 
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="7mHpyyev"></script>
-<div class="fb-page" 
-data-href="https://www.facebook.com/facebook"
-data-width="380" 
-data-hide-cover="false"
-data-show-facepile="false"></div>
 @endsection

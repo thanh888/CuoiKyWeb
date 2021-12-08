@@ -29,7 +29,6 @@
         {
         if (data.code==200) {
           that.parent().parent().parent().remove();
-          // $(.all_post).reload();
           Swal.fire(
                       'Deleted!',
                       'Your file has been deleted.',
@@ -58,10 +57,10 @@
   <div class="row">
     <div class="col-12 mt-4">
       <div class="card mb-4">
-        <div class="card-header pb-0 p-3">
-          <h6 class="mb-1">Tất cả các tin đã đăng</h6>
+        <div class="card-header pb-0 p-3 justify-content-between d-flex">
+          <h2 class="mb-1">Tất cả các tin đã đăng</h2>
           <a class="nav-link mb-0 px-0 py-1 active" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
-            <a class="ms-1 btn btn-outline-primary "><i class="far fa-plus-square"></i> Đăng tin</a>
+            <a class="ms-1 btn btn-outline-primary " href="{{ route('post.create', ['id'=>1]) }}"><i class="far fa-plus-square"></i> Đăng tin</a>
           </a>
           {{-- <p class="text-sm">Architects design houses</p> --}}
         </div>

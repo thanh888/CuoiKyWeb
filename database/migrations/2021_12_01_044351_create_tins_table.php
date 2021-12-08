@@ -25,7 +25,7 @@ class CreateTinsTable extends Migration
             $table->integer('quantityfloor')->nullable();
             $table->integer('quantitybed')->nullable();
             $table->integer('quantitybath')->nullable();
-            $table->string('description');
+            $table->text('description');
             $table->string('price');
             $table->integer('matp');
             $table->integer('maqh');

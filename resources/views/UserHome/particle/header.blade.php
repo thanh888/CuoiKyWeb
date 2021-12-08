@@ -138,7 +138,7 @@
               
           @else
           <li class="nav-item">
-            <a class="nav-link " href="{{ route('home.login') }}">Log in</a>
+            <a class="nav-link " href="{{ route('home.login') }}">Đăng nhập <i class="fas fa-sign-in-alt"></i></a>
           </li>
               
           @endif

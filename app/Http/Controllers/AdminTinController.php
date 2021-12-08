@@ -41,7 +41,7 @@ class AdminTinController extends Controller
     }
     public function index()
     {
-        $tin = $this->tin->paginate(3);
+        $tin = $this->tin->paginate(5);
         return view('admin.tin.index', compact('tin'));
     }
     public function create()
@@ -52,8 +52,9 @@ class AdminTinController extends Controller
         $needs= [];
         foreach ($datas as $data ) {
             if ($datas->contains($data->parent_id)) {
-                $needs[]= $data;
+                continue;
             }
+            $needs[]= $data;
         }
 
         // dd($data);
