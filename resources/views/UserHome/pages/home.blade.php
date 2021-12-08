@@ -1,6 +1,5 @@
 @extends('UserHome.layout.layout')
 @section('content')
-
 @include('UserHome.particle.slider')
 <main id="main">
 
@@ -113,23 +112,23 @@
 
         <div id="property-carousel" class="swiper">
           <div class="swiper-wrapper">
-
+            @foreach($tinnew as $tinnews)
             <div class="carousel-item-b swiper-slide">
               <div class="card-box-a card-shadow">
                 <div class="img-box-a">
-                  <img src="{{asset('frontend/template/assets/img/property-6.jpg')}}" alt="" class="img-a img-fluid">
+                  <img src="{{$tinnews->image_path}}" alt="" class="img-a img-fluid">
                 </div>
                 <div class="card-overlay">
                   <div class="card-overlay-a-content">
                     <div class="card-header-a">
                       <h2 class="card-title-a">
-                        <a href="property-single.html">206 Mount
-                          <br /> Olive Road Two</a>
+                        <a href="property-single.html">{{$tinnews->nhucau}}
+                          <br />Khu Vực:{{$tinnews->city->name_city}}</a>
                       </h2>
                     </div>
                     <div class="card-body-a">
                       <div class="price-box d-flex">
-                        <span class="price-a">rent | $ 12.000</span>
+                        <span class="price-a">{{number_format($tinnews->price)}} VNĐ</span>
                       </div>
                       <a href="#" class="link-a">Click here to view
                         <span class="bi bi-chevron-right"></span>
@@ -139,21 +138,21 @@
                       <ul class="card-info d-flex justify-content-around">
                         <li>
                           <h4 class="card-info-title">Area</h4>
-                          <span>340m
+                          <span>{{$tinnews->dientich}}
                             <sup>2</sup>
                           </span>
                         </li>
                         <li>
                           <h4 class="card-info-title">Beds</h4>
-                          <span>2</span>
+                          <span>{{$tinnews->quantityfloor}}</span>
                         </li>
                         <li>
                           <h4 class="card-info-title">Baths</h4>
-                          <span>4</span>
+                          <span>{{$tinnews->quantitybed}}</span>
                         </li>
                         <li>
                           <h4 class="card-info-title">Garages</h4>
-                          <span>1</span>
+                          <span>{{$tinnews->quantitybath}}</span>
                         </li>
                       </ul>
                     </div>
@@ -162,149 +161,9 @@
               </div>
             </div><!-- End carousel item -->
 
-            <div class="carousel-item-b swiper-slide">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a">
-                  <img src="{{asset('frontend/template/assets/img/property-3.jpg')}}" alt="" class="img-a img-fluid">
-                </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="property-single.html">157 West
-                          <br /> Central Park</a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">rent | $ 12.000</span>
-                      </div>
-                      <a href="property-single.html" class="link-a">Click here to view
-                        <span class="bi bi-chevron-right"></span>
-                      </a>
-                    </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-                          <h4 class="card-info-title">Area</h4>
-                          <span>340m
-                            <sup>2</sup>
-                          </span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Beds</h4>
-                          <span>2</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Baths</h4>
-                          <span>4</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Garages</h4>
-                          <span>1</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End carousel item -->
+            @endforeach
 
-            <div class="carousel-item-b swiper-slide">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a">
-                  <img src="{{asset('frontend/template/assets/img/property-7.jpg')}}" alt="" class="img-a img-fluid">
-                </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="property-single.html">245 Azabu
-                          <br /> Nishi Park let</a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">rent | $ 12.000</span>
-                      </div>
-                      <a href="property-single.html" class="link-a">Click here to view
-                        <span class="bi bi-chevron-right"></span>
-                      </a>
-                    </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-                          <h4 class="card-info-title">Area</h4>
-                          <span>340m
-                            <sup>2</sup>
-                          </span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Beds</h4>
-                          <span>2</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Baths</h4>
-                          <span>4</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Garages</h4>
-                          <span>1</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End carousel item -->
-
-            <div class="carousel-item-b swiper-slide">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a">
-                  <img src="{{asset('frontend/template/assets/img/property-10.jpg')}}" alt="" class="img-a img-fluid">
-                </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="property-single.html">204 Montal
-                          <br /> South Bela Two</a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">rent | $ 12.000</span>
-                      </div>
-                      <a href="property-single.html" class="link-a">Click here to view
-                        <span class="bi bi-chevron-right"></span>
-                      </a>
-                    </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-                          <h4 class="card-info-title">Area</h4>
-                          <span>340m
-                            <sup>2</sup>
-                          </span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Beds</h4>
-                          <span>2</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Baths</h4>
-                          <span>4</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Garages</h4>
-                          <span>1</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End carousel item -->
+            
           </div>
         </div>
         <div class="propery-carousel-pagination carousel-pagination"></div>

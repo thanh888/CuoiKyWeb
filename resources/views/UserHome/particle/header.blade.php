@@ -114,15 +114,15 @@
             <a class="nav-link " href="about.html">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="{{ route('contact.index') }}">Contact</a>
+            <a class="nav-link" href="{{ route('contact.index') }}">Contact</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link " href="property-grid.html">Property</a>
+            <a class="nav-link" href="property-grid.html">Property</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link " href="blog-grid.html">Blog</a>
+            <a class="nav-link" href="blog-grid.html">Blog</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -161,3 +161,4 @@
 
     </div>
   </nav><!-- End Header/Navbar -->
+ 

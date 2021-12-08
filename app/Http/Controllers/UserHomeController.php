@@ -7,18 +7,21 @@ use Illuminate\Http\Request;
 use App\Models\Slider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Tin;
 
 class UserHomeController extends Controller
 {
     private $slider;
-    public function __construct(Slider $slider)
+    public function __construct(Slider $slider,Tin $tin)
     {
           $this->slider=$slider;
+          $this->tin=$tin;
     }
     public function index()
     {
+        $tinnew=$this->tin->latest()->take(3)->get();
          $slider=$this->slider->all();
-        return view('UserHome.pages.home',compact('slider'));
+        return view('UserHome.pages.home',compact('slider','tinnew'));
     }
     public function login()
     {

@@ -12,12 +12,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//chat
 
-Route::get('/', function () {
-    return view('UserHome.pages.home');
-});
+
+// Route::get('/', function () {
+//     return view('UserHome.pages.home');
+// });
 Route::prefix('admin')->group(function () {
-    Route::get('/', [
+    Route::get('/login', [
         'as' => 'admin.login',
         'uses' => 'AdminController@loginAdmin'
     ]);
@@ -44,11 +46,13 @@ Route::prefix('admin')->group(function () {
     Route::prefix('slider')->group(function () {
         Route::get('/slider', [
             'as' => 'admin.slider.index',
-            'uses' => 'AdminSliderController@index'
+            'uses' => 'AdminSliderController@index',
+            'middleware'=>'can:slider-list'
         ]);
         Route::get('/slider/add', [
             'as' => 'admin.slider.add',
-            'uses' => 'AdminSliderController@add'
+            'uses' => 'AdminSliderController@add',
+            'middleware'=>'can:slider-add'
         ]);
         Route::post('/slider/store', [
             'as' => 'admin.slider.store',
@@ -57,6 +61,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', [
             'as' => 'slider.edit',
             'uses' => 'AdminSliderController@edit',
+            'middleware'=>'can:slider-edit'
         ]);
         Route::post('/slider/{id}', [
             'as' => 'slider.update',
@@ -66,6 +71,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id}', [
             'as' => 'slider.delete',
             'uses' => 'AdminSliderController@delete',
+            'middleware'=>'can:slider-delete'
         ]);
     });
     Route::prefix('city')->group(function () {

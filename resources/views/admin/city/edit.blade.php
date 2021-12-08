@@ -67,7 +67,7 @@
                     <div class="form-group">
                         <label>Chọn City</label>
                         <select class="form-control choose city" name="city" id="city">
-                        <option value="">{{$apartmentnumber->citys->name_city}}</option>
+                        <option value="{{$apartmentnumber->matp}}">{{$apartmentnumber->citys->name_city}}</option>
                             @foreach($city as $key => $citys)
                         <option value="{{$citys->matp}}">{{$citys->name_city}}</option>
                             @endforeach
@@ -76,14 +76,14 @@
                     <div class="form-group">
                         <label>Chọn Province</label>
                         <select class="form-control province choose" name="province" id="province">
-                        <option value="">{{$apartmentnumber->province->name_quanhuyen}}</option>
+                        <option value="{{$apartmentnumber->maqh}}">{{$apartmentnumber->province->name_quanhuyen}}</option>
                         
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Chọn Wards</label>
                         <select class="form-control wards" name="wards" id="wards" >
-                        <option value="">{{$apartmentnumber->wards->name_xaphuong}}</option>
+                        <option value="{{$apartmentnumber->xaid}}">{{$apartmentnumber->wards->name_xaphuong}}</option>
                         
                         </select>
                     </div>
