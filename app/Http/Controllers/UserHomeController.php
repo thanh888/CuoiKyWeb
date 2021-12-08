@@ -32,9 +32,9 @@ class UserHomeController extends Controller
         $needs= [];
         foreach ($datas as $data ) {
             if ($datas->contains($data->parent_id)) {
+                $needs[]= $data;
                 continue;
             }
-            $needs[]= $data;
         }
         
         $tinnew=$this->posting->latest()->take(3)->get();
@@ -42,7 +42,7 @@ class UserHomeController extends Controller
          $postings= Tin::all();
          $blogs=Blogs::all();
         //  dd($postings->images->name);
-        return view('UserHome.pages.home',compact('slider','blogs', 'postings','tinnew','needs'));
+        return view('UserHome.pages.home',compact('slider', 'postings','tinnew','needs', 'blogs'));
     }
     public function login()
     {

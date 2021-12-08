@@ -80,7 +80,7 @@
         background: #fff;">
         <div class="card card-blog card-plain">
           <div class="position-relative" style="height: 170px">
-            <a class="d-block shadow-xl border-radius-xl">
+            <a class="d-block shadow-xl border-radius-xl" >
               <img style="width: 100%; object-fit: cover; max-height:170px;" src="{{ $item->image_path }}" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
             </a>
           </div>
