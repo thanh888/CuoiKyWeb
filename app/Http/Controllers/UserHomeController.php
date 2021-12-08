@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InforUserPosting;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\Slider;
@@ -58,6 +59,10 @@ class UserHomeController extends Controller
             'name'=> $request->name,
             'email'=> $request->email,
             'password'=> Hash::make($request-> password),
+        ]);
+        InforUserPosting::create([
+            'name'=> $request->name,
+            'email'=> $request->email,
         ]);
         return redirect()->to(route('home.index'));
     }

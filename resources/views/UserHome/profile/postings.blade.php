@@ -28,7 +28,8 @@
         success:function(data)
         {
         if (data.code==200) {
-          that.parent().parent().parent().parent().parent().parent().remove();
+          that.parent().parent().parent().remove();
+          // $(.all_post).reload();
           Swal.fire(
                       'Deleted!',
                       'Your file has been deleted.',
@@ -73,11 +74,11 @@
   
 </div>
 <div class="container-fluid">
-  <div class="row">
+  <div class="row all_post">
     @foreach ($post as $item)
       <div class="col-md-3 mb-xl-0 mb-4" style="border-radius: 8px;
-      box-shadow: 0 1px 10px 0 rgb(0 0 0 / 12%);
-      background: #fff;">
+        box-shadow: 0 1px 10px 0 rgb(0 0 0 / 12%);
+        background: #fff;">
         <div class="card card-blog card-plain">
           <div class="position-relative" style="height: 170px">
             <a class="d-block shadow-xl border-radius-xl">
@@ -121,80 +122,17 @@
               <div class="article-info-location" data-toggle="tooltip" data-placement="top"  data-original-title="Vị trí" style="font-size: 14px;">
                   <i class="fas fa-map-marker-alt"></i> {{ $item->numberhouse .', '. $item->wards->name_xaphuong .', '. $item->province->name_quanhuyen .', '. $item->city->name_city }}
               </div>
-            {{-- </div> --}}
             <div class="d-flex align-items-center justify-content-between">
-              <button type="button" class="btn btn-outline-primary btn-sm mb-0 px-2">View Project</button>
-              <button type="button" class="btn btn-outline-primary btn-sm mb-0 px-2">Edit Project</button>
+              <a type="button" data-url="{{ route('post.delete', ['id'=>$item->id]) }}" class="actionDelete btn btn-outline-primary btn-sm mb-0 px-2">Xóa</a>
+              <a type="button" href="{{ route('post.edit', ['id'=>$item->id]) }}" class="btn btn-outline-primary btn-sm mb-0 px-2">Sửa </a>
             </div>
           </div>
-        </div>
+          </div>
         </div>
         
         @endforeach
       </div>
     
   </div>
-  {{-- <div class="row">
-    @foreach ($post as $item)
-    <div class="col-md-4">
-      <div class="article-card" data-id="61a88fbd32c75a0019884c2a" data-category-id="5deb722db4367252525c1d00" >
-        <div class="article-card-head" style="">
-          <div class="card-head-img" >
-              <a href="{{ route('post.detail', ['id'=>$item->id]) }}" class="call-traking"></a>
-              <img class="card-image-top lazy" src="{{ $item->image_path }}">
-          </div>
-          <div class="card-head-function " >
-              <div class="list-function">
-                <button class="btn-custom btn-func function-heart" id="btn-favorite-61a88fbd32c75a0019884c2a" data-article-id="61a88fbd32c75a0019884c2a" >Bán gấp</button>
-              </div>
-          </div>
-        </div>
-        <div class="article-card-body p-2" >
-          <div class="card-title text-uppercase" >
-              <a href="{{ route('post.detail', ['id'=>$item->id]) }}" class="call-traking">
-                    Chính chủ cần bán 470m2 đất thổ cư, đường ô tô, giá đầu tư, Sóc Sơn, Hà Nội
-              </a>
-          </div>
-          <div class="article-info">
-              <div class="article-price" >
-                <i class="fas fa-dollar-sign"></i> 3.06 Tỷ - 6.5 Triệu/m²
-              </div>
-          </div>
-          <div class="article-info-detail row">
-              <div class="col-md-6">
-                <div class="article-info-detail-item no-wrap items-center " data-toggle="tooltip" data-placement="top" title="" data-original-title=" Diện tích: 470 m²">
-                  <i class="far fa-clone"></i> 470 m²
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="article-info-detail-item no-wrap items-center " data-toggle="tooltip" data-placement="top" title="" data-original-title="Đường rộng: Mặt phố - Mặt đường" >
-                  <i class="fas fa-road"></i> Mặt phố - Mặt đường
-                </div>
-              </div>
-              
-              <div class="col-md-6">
-                <div class="article-info-detail-item no-wrap items-center " data-toggle="tooltip" data-placement="top" title="" data-original-title="Đối tượng: Chính chủ">
-                  <i class="fas fa-user"></i> Chính chủ
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="article-info-detail-item no-wrap items-center " data-toggle="tooltip" data-placement="top" title="" data-original-title="Loại nhà đất: Đất - Đất nền - Nhà như đất" style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">
-                  <i class="fas fa-city"></i> Đất - Đất nền - Nhà như đất
-                </div>
-              </div>
-          </div>
-          <div class="article-info-location" data-toggle="tooltip" data-placement="top"  data-original-title="Vị trí" style="font-size: 14px;">
-              <i class="fas fa-map-marker-alt"></i> Huyện Sóc Sơn, Thành phố Hà Nội
-          </div>
-        </div>
-        <div class="article-card-footer p-2 text-end" >
-          <a  class="no-wrap items-center chip-content-footer icon-messenge tracking-chat" data-article-id="61a88fbd32c75a0019884c2a" href="javascript:void(0)" >
-            <i class="far fa-comment-dots"></i> Chat ngay</a>
-        </div>
-      </div>
-    </div>
-      
-     @endforeach
-    
-  </div> --}}
+ 
 @endsection

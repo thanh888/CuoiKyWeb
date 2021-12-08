@@ -12,22 +12,22 @@ class NeedSeeder extends Seeder
      */
     public function run()
     {
-        Need::insert( [
-            'name'=> 'Cần Bán'
+        Need::create( [
+            'name'=> 'Mua Bán'
         ]);
-        Need::insert( [
+        Need::create( [
             'name'=> 'Cần Mua'
         ]);
-        Need::insert( [
+        Need::create( [
             'name'=> 'Cho Thuê'
         ]);
-        Need::insert( [
+        Need::create( [
             'name'=> 'Cần Thuê'
         ]);
-        Need::insert( [
+        Need::create( [
             'name'=> 'Sang Nhượng'
         ]);
-        Need::insert( [
+        Need::create( [
             'name'=> 'Mua Sang Nhượng'
         ]);
     }
