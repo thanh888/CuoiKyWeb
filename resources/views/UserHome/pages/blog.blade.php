@@ -30,7 +30,7 @@
   <section class="news-grid grid">
     <div class="container">
       <div class="row">
-        @foreach($data as $us)
+        @foreach($data1 as $us)
         <div class="col-md-4">
           <div class="card-box-b card-shadow news-box">
             <div class="img-box-b">
@@ -55,7 +55,7 @@
         </div> 
         @endforeach
       </div>
-        {{ $data->links() }}
+        {{ $data1->links() }}
     </div>
   </section>
 @endsection

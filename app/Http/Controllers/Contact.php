@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers;
 use App\Models\Contacts;
+use App\Models\Need;
 use Illuminate\Http\Request;
 
 class Contact extends Controller
 {
     function index(){
-        return view('UserHome.pages.contact');
+        $datas= Need::all();
+        $needs= [];
+        foreach ($datas as $data ) {
+            if ($datas->contains($data->parent_id)) {
+                $needs[]= $data;
+            }
+        }
+        return view('UserHome.pages.contact',compact('needs'));
     }
     function post(Request $request){
         $data = new Contacts();
