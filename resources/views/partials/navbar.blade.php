@@ -29,7 +29,7 @@
 									</div>
 										
 					</li>
-             
+              
               <li class="nav-item d-flex align-items-center">
                 <a href="{{route('admin.loguot')}}" class="nav-link text-body font-weight-bold px-0">
                 <i font-size="100px;" class="bi bi-box-arrow-in-right"></i>
