@@ -74,10 +74,10 @@
                     </div>
                     <div class="icon-box-content">
                       <p class="mb-1">Email:
-                        <span class="color-a">lvphu.20it3@vku.udn.vn</span>
+                        <span class="color-a">tvhieu.20it1@vku.udn.vn</span>
                       </p>
                       <p class="mb-1">Phone.
-                        <span class="color-a">113</span>
+                        <span class="color-a">+84 39 226 1811</span>
                       </p>
                     </div>
                   </div>
