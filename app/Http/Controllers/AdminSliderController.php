@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HousingType;
 use Illuminate\Http\Request;
 use App\Models\Slider;
 use App\Traits\storageImageTrait;
 
 use Illuminate\Support\Facades\DB;
-use Log;
+use Illuminate\Support\Facades\Log;
 class AdminSliderController extends Controller
 {
     use storageImageTrait;

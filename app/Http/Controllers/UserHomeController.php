@@ -5,23 +5,38 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\Slider;
+use App\Models\Tin;
+use App\Models\Need;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Tin;
 
 class UserHomeController extends Controller
 {
     private $slider;
-    public function __construct(Slider $slider,Tin $tin)
+    private $postings;
+    private $need;
+    public function __construct(Slider $slider, Tin $posting)
     {
           $this->slider=$slider;
-          $this->tin=$tin;
+          $this->posting=$posting;
+         
     }
     public function index()
     {
-        $tinnew=$this->tin->latest()->take(3)->get();
+        $datas= Need::all();
+        $needs= [];
+        foreach ($datas as $data ) {
+            if ($datas->contains($data->parent_id)) {
+                continue;
+            }
+            $needs[]= $data;
+        }
+        
+        $tinnew=$this->posting->latest()->take(3)->get();
          $slider=$this->slider->all();
-        return view('UserHome.pages.home',compact('slider','tinnew'));
+         $postings= Tin::all();
+        //  dd($postings->images->name);
+        return view('UserHome.pages.home',compact('slider', 'postings','tinnew','needs'));
     }
     public function login()
     {
@@ -64,5 +79,19 @@ class UserHomeController extends Controller
         Auth::logout();
         return redirect()->to(route('home.index'));
 
+    }
+    public function loadneed($id)
+    {
+        $datas= Need::all();
+        $needs= [];
+        foreach ($datas as $data ) {
+            if ($datas->contains($data->parent_id)) {
+                continue;
+            }
+            $needs[]= $data;
+        }
+        $slider=$this->slider->all();
+      $tin=Tin::where('need_id',$id)->get();
+      return view('UserHome.pages.loadneed',compact('needs','tin','slider'));
     }
 }

@@ -35,7 +35,24 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('.choose').on('change',function()
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1; //January is 0!
+      var yyyy = today.getFullYear();
+
+      if (dd < 10) {
+        dd = '0' + dd;
+      }
+
+      if (mm < 10) {
+        mm = '0' + mm;
+      } 
+          
+      today = yyyy + '-' + mm + '-' + dd;
+      $('#day_post').attr('min', today );
+      $('#day_post').val(today);
+
+      $('.choose').on('change',function()
        {
             var action=$(this).attr('id');
             var ma_id=$(this).val();
@@ -50,8 +67,6 @@
 
                 }else if(action==='province'){
                     result='wards';
-                }else{
-                  result='sonha';
                 }
                 $.ajax({
                     url:"/delivery/sonha",
@@ -63,8 +78,26 @@
                 });
        });
 
-  
-    });
+       $('#choose_quantity').on('change',function()
+       {
+            // var action=$(this).attr('id');
+            // alert(1);
+            var id=$(this).val();
+            var _token=$('input[name="_token"]').val();
+            // var result='';  
+              $.ajax({
+                  url:"/delivery/songay",
+                  method:'POST',
+                  data:{id:id,
+                        _token:_token
+                        },
+                  success:function(data){
+                    $('#price_post').val(data);
+
+                  }
+              });
+       });
+    });  
 </script>
 @endsection
 
@@ -72,154 +105,240 @@
 
 
 @section('content')
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h3 class="m-0">City</h3>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Trang Chu</a></li>
-              <li class="breadcrumb-item active">List</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-<div class="content-wrapper">
+<form action="{{route('tin.update',['id'=>$tin->id])}}"method="post" enctype="multipart/form-data">
+  @csrf
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h3 class="m-0">City</h3>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <div class="content-wrapper">
    
    
     <div class="content">
       <div class="container-fluid">
-      <form action="{{route('tin.update',['id'=>$tin->id])}}"method="post" enctype="multipart/form-data">
-              @csrf
+      
         
         <div class="row">
-            
-                    <div class="form-group col-md-3">
-                        <label>Chọn city</label>
-                        <select class="form-control choose city" name="city" id="city">
-                        <option value="{{$tin->matp}}">{{$tin->city->name_city}}</option>
-                            @foreach($city as $key => $citys)
-                        <option value="{{$citys->matp}}">{{$citys->name_city}}</option>
-                            @endforeach
-                        </select>
-                        
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label>Chọn quận huyện</label>
-                        <select class="form-control province choose" name="province" id="province">
-                        <option  value="{{$tin->maqh}}">{{$tin->province->name_quanhuyen}}</option>
-                        
-                        </select>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label>Chọn xã phường</label>
-                        <select class="form-control wards choose" name="wards" id="wards" >
-                        <option value="{{$tin->xaid}}">{{$tin->wards->name_xaphuong}}</option>
-                        
-                        </select>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label >Số Nhà</label>
-                        
-                    <div class="sonha" id="sonha" name="sonha">
-                        <input name="sonha" value="{{$tin->numberhouse}}" type="text">
-              
-                    </div>
+            <div class="form-group col-md-3">
+                <label>Chọn city</label>
+                <select class="form-control choose city" name="city" id="city">
+                <option value="{{$tin->matp}}">{{$tin->city->name_city}}</option>
+                    @foreach($city as $key => $citys)
+                <option value="{{$citys->matp}}">{{$citys->name_city}}</option>
+                    @endforeach
+                </select>
+                
             </div>
+            <div class="form-group col-md-3">
+                <label>Chọn quận huyện</label>
+                <select class="form-control province choose" name="province" id="province">
+                <option  value="{{$tin->maqh}}">{{$tin->province->name_quanhuyen}}</option>
+                
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Chọn xã phường</label>
+                <select class="form-control wards choose" name="wards" id="wards" >
+                <option value="{{$tin->xaid}}">{{$tin->wards->name_xaphuong}}</option>
+                
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label >Số Nhà</label>
+                <div class="sonha" id="sonha" name="sonha">
+                    <input name="sonha"  class="form-control " value="{{$tin->numberhouse}}" type="text">
+          
+                </div>
+            </div>
+        </div>
         <div class="row">
                     
-                    <div class="form-group col-md-2">
-                        <label>Area</label>
-                        <select name="area" class="form-control" id="">
-                        <option>{{$tin->area}}</option>
-                        <option>Mỹ</option>
-                        <option>Việt Nam</option>
-                        <option>Anh</option>
-                        <option>Trung Quốc</option>
-                        <option>Pháp</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label>Chọn Nhu Cầu</label>
-                        <select name="nhucau" class="form-control" id="">
-                        <option>{{$tin->nhucau}}</option>
-                        <option>Bán</option>
-                        <option>Thuê</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label >Ảnh đại diện</label>
-                        <input type="file" class="form-control-file" placeholder=" Nhập tên sản phẩm    " name="feature_image">
-                        <img  class="product_image_150_10 border-radius-lg shadow-sm" src="{{$tin->image_path}}" alt="">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label >Ảnh chi tiết</label>
-                        <input type="file" multiple class="form-control-file" placeholder=" Nhập tên sản phẩm    " name="image_path[]">
-                        @foreach($tin->tinImage as $tins )
-                               
-                                      <img class="product_image_150_10 ok border-radius-lg shadow-sm" src="{{$tins->image_path}}" alt="">
-                                
-                        @endforeach
-                      </div>  
-                  
+          <div class="form-group col-md-3">
+            <label>Chọn Nhu Cầu</label>
+            <select name="need" class="form-control" id="" >
+              <option value="">Chọn nhu cầu</option>
+              @foreach ($needs as $need)
+                <option {{ $needed==$need->id ? 'selected': '' }} value="{{ $need->id }}">{{ $need->name }}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group col-md-3">
+              <label>Loại nhà đất</label>
+              <select name="housingtype" class="form-control" id="">
+                <option value="">Chọn loại hình nhà đất</option>
+                @foreach ($housingtypes as $housingtype)
+                  <option {{ $housingtyped==$housingtype->id? 'selected': '' }} value="{{ $housingtype->id }}">{{ $housingtype->name }}</option>
+                @endforeach
+              </select>
+          </div>
+          
         </div>
         <div class="row">
-                    <div class="form-group col-md-2">
-                        <label >Số Tầng </label>
+          <div class="col-md-6">
+            <label >Ảnh đại diện</label>
+            <div class="form-group ">
+                <input type="file" class="form-control" placeholder=" Nhập tên sản phẩm    " name="feature_image">
+                <img  class="m-3 product_image_150_10 border-radius-lg shadow-sm" src="{{$tin->image_path}}" alt="">
+            </div>
+
+          </div>
+          <div class="col-md-6">
+            <label >Ảnh chi tiết</label>
+            <div class="form-group ">
+              <input type="file" multiple class="form-control" placeholder=" Nhập tên sản phẩm    " name="image_path[]">
+                @foreach($tin->tinImage as $tins )
                         
-                        <div class="" id="" name="">
-                        <input class="border-radius-lg shadow-sm" value="{{$tin->quantityfloor}}" name="quantityfloor" type="number" min=1>
-					              </div>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label >Phong Ngủ</label>
+                  <img class="m-3 product_image_150_10 ok border-radius-lg shadow-sm" src="{{$tins->image_path}}" alt="">
                         
-                        <div class="" id="" name="">
-                        <input class="border-radius-lg shadow-sm" value="{{$tin->quantitybed}}"  name="quantitybed" type="number" min=1>
-					              </div>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label >Phòng Tắm</label>
-                        
-                        <div class="" id="" name="">
-                        <input  class="border-radius-lg shadow-sm" value="{{$tin->quantitybath}}" name="quantitybath" type="number" min=1>
-					              </div>
-                    </div>
+                @endforeach
+            </div>  
+
+          </div>
+          
         </div>
         <div class="row">
-                    <div class="form-group col-md-2">
-                        <label >Diện Tích</label>
-                        
-                        <div  class="" id="" name="">
-                        <input class="border-radius-lg shadow-sm" value="{{$tin->dientich}}" name="dientich" type="text">
-					              </div>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label >Gía Khoảng</label>
-                        
-                        <div class="" id="" name="">
-                        <input class="border-radius-lg shadow-sm" value="{{$tin->price}}" name="price" type="text">
-					              </div>
-                    </div>
+          <div class="col-md-4">
+            <label >Số Tầng </label>
+            <div class="form-group">
+                <input value="{{ $tin->quantityfloor }}" class="form-control border-radius-lg shadow-sm" name="quantityfloor" type="number" min=1>
+            </div>
+
+          </div>
+          <div class="col-md-4">
+            <label >Phòng Ngủ</label>
+            <div class="form-group">
+              <input value="{{ $tin->quantitybed }}" class="form-control border-radius-lg shadow-sm" name="quantitybed" type="number" min=1>
+            </div>
+
+          </div>
+          
+          <div class="col-md-4">
+            <label >Phòng Tắm</label>
+            <div class="form-group">
+                <input value="{{ $tin->quantitybath }}" class="form-control border-radius-lg shadow-sm" name="quantitybath" type="number" min=1>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label >Diện Tích (m2)</label>
+            <div class="form-group ">
+                <input value="{{ $tin->large }}" class="form-control border-radius-lg shadow-sm" name="dientich" type="text">
+            </div>
+
+          </div>
+          <div class="col-md-4">
+            <label >Giá Khoảng(1đ/m2)</label>
+            <div class="form-group ">
+                <input value="{{ $tin->price }}" class=" border-radius-lg shadow-sm" name="price" type="text">
+            </div>
+
+          </div>
                     
         </div> 
         <div class="row">
-        <div class="md-form amber-textarea active-amber-textarea-2">
-          <i class="fas fa-pencil-alt prefix"></i>
-          <textarea name="description" id="form24" class="md-textarea form-control" rows="3">{{$tin->description}}</textarea>
-          <label for="form24">Thông tin tổng quát(ghi rõ cách liên lạc)</label>
-        </div>
-        </div> 
-                    
-                    <button type="submit"class="btn btn-success update add_delivery">Sửa tin</button>
-           
+          <div class="col-md-12">
+            <label >Tiêu đề</label>
+            <div class="form-group ">
+                <input class="form-control" name="title" type="text" value="{{ $tin->title }}" placeholder="Tiêu đề">
             </div>
+
+          </div>
+          <div class="md-form amber-textarea active-amber-textarea-2">
+            <i class="fas fa-pencil-alt prefix"></i>
+            <label for="form24">Thông tin chi tiết</label>
+            <textarea name="description" id="form24" class="md-textarea form-control" rows="3">{{ $tin->description }}</textarea>
+          </div>
+        </div> 
+         
         </div>
-        </form>
       </div>
     </div>
   </div>
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h3 class="m-0">Thông tin người đăng</h3>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <div class="content-wrapper">
+    <div class="content">
+      <div class="container-fluid">
+        
+        <div class="row">
+          <div class="col-md-6">
+            <label >Họ và tên</label>
+            <div class="form-group ">
+              <input class="form-control" name="nameuser" type="text" placeholder="Họ và tên" value="{{ $tin->InforUser->name }}">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label >Số điện thoại</label>
+            <div class="form-group ">
+                <input class="form-control" name="phone" type="text" placeholder="Số điện thoại" value="{{ $tin->InforUser->phone }}">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label >Email</label>
+            <div class="form-group ">
+                <input class="form-control" name="email" type="email" placeholder="Email" value="{{ $tin->InforUser->email }}">
+            </div>
+          </div>
+          
+        </div> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h3 class="m-0">Chọn gói đăng tin</h3>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <div class="content-wrapper">
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            <label >Số ngày đăng</label>
+            <div class="form-group">
+              <select class="form-control" name="quantity_daypost" id="choose_quantity">
+                @foreach ($daypost as $item)
+                  <option {{ $item->id == $tin->quantity_daypost_id ?'selected': '' }}  value="{{ $item->id }}">{{ $item->name }}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label >Ngày đăng</label>
+            <div class="form-group ">
+                <input class="form-control" name="daypost" id="day_post" name="created"  type="date" value="{{ $tin->daypost }}">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <label >Giá gói cước</label>
+            <div class="form-group ">
+                <input class="form-control " id="price_post" name="text" disabled type="text" value="{{ $tin->quantitydaypost->price }}">
+            </div>
+          </div>
+        </div> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="submit"class="btn btn-success update add_delivery">Sửa tin</button>
+</form>
+
 @endsection

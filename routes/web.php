@@ -14,15 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 //chat
 
-
 // Route::get('/', function () {
 //     return view('UserHome.pages.home');
 // });
 Route::prefix('admin')->group(function () {
+    Route::get('/', [
+        'as' => 'admin.home',
+        'uses' => 'AdminController@index'
+    ]);
     Route::get('/login', [
         'as' => 'admin.login',
         'uses' => 'AdminController@loginAdmin'
     ]);
+    
     Route::post('/login/ok', [
         'as' => 'admin.loginpost',
         'uses' => 'AdminController@postLoginAdmin'
@@ -39,10 +43,7 @@ Route::prefix('admin')->group(function () {
         'as' => 'admin.loguot',
         'uses' => 'AdminController@logoutAdmin'
     ]);
-    Route::get('/', [
-        'as' => 'admin.home',
-        'uses' => 'AdminController@index'
-    ]);
+    
     Route::prefix('slider')->group(function () {
         Route::get('/slider', [
             'as' => 'admin.slider.index',
@@ -156,6 +157,42 @@ Route::prefix('admin')->group(function () {
         ]);
     
     });
+    Route::prefix('adminblog')->group(function(){
+        Route::get('/',[
+            'as'=> 'adminblog.index',
+            'uses'=> 'AdminBlog@index',
+            'middleware'=>'can:blog-list'
+        ]);
+        Route::get('/add_blog',[
+            'as'=> 'adminblog.add',
+            'uses'=> 'AdminBlog@add',
+            'middleware'=>'can:blog-add'
+        ]);
+        Route::post('/add_blog/store',[
+            'as'=> 'adminblog.addstore',
+            'uses'=> 'AdminBlog@addstore'
+        ]);
+        Route::get('/update_blog/{id}',[
+            'as'=> 'adminblog.update',
+            'uses'=> 'AdminBlog@update',
+            'middleware'=>'can:blog-edit'
+        ]);
+        Route::post('/update_blgpost/{id}',[
+            'as'=> 'adminblog.pupdate',
+            'uses'=> 'AdminBlog@pupdate'
+        ]);
+    });
+    Route::prefix('admincontact')->group(function(){
+        Route::get('/',[
+            'as'=> 'admincontact.index',
+            'uses'=> 'AdminContact@index',
+            'middleware'=>'can:contact-list'
+        ]);
+        Route::get('/view-admin_contact/{id}',[
+            'as'=> 'admincontact.view',
+            'uses'=> 'AdminContact@view'
+        ]);
+    });
 });
 //Tỉnh thành phố 
 Route::post('/delivery', [
@@ -166,15 +203,21 @@ Route::post('/delivery/sonha', [
     'as' => 'select_delivery',
     'uses' => 'AdminTinController@select_delivery'
 ]);
+Route::post('/delivery/songay', [
+    'as' => 'select_delivery',
+    'uses' => 'AdminTinController@select_day'
+]);
 
 Route::prefix('admin/city')->group(function () {
     Route::get('/', [
         'as' => 'admin.city.index',
-        'uses' => 'AdminCityController@index'
+        'uses' => 'AdminCityController@index',
+        'middleware'=>'can:city-list'
     ]);
     Route::get('/add', [
         'as' => 'admin.city.add',
-        'uses' => 'AdminCityController@add'
+        'uses' => 'AdminCityController@add',
+        'middleware'=>'can:city-add'
     ]);
     Route::post('/store', [
         'as' => 'admin.city.store',
@@ -183,6 +226,7 @@ Route::prefix('admin/city')->group(function () {
     Route::get('/edit/{id}', [
         'as' => 'city.edit',
         'uses' => 'AdminCityController@edit',
+        'middleware'=>'can:city-edit'
     ]);
     Route::post('/update/{id}', [
         'as' => 'city.update',
@@ -191,6 +235,7 @@ Route::prefix('admin/city')->group(function () {
     Route::get('/delete/{id}', [
         'as' => 'city.delete',
         'uses' => 'AdminCityController@delete',
+        'middleware'=>'can:city-delete'
     ]);
 });
 //User
@@ -232,6 +277,10 @@ Route::prefix('UserHome')->group(function(){
         'as'=>'home.logout',
         'uses'=>'UserHomeController@logout'
     ]);
+    Route::get('/loadneeds/{id}', [
+        'as'=>'loadneeds',
+        'uses'=>'UserHomeController@loadneed'
+    ]);
 
     Route::prefix('profile')->group(function(){
         Route::get('',[
@@ -270,12 +319,13 @@ Route::prefix('settings')->group(function () {
     Route::get('/',[
         'as'=>'settings.index',
         'uses'=>'AdminSettingController@index',
+        'middleware'=>'can:setting-list'
         
                          ]);
     Route::get('/create',[
         'as'=>'settings.create',
         'uses'=>'AdminSettingController@create',
-        
+        'middleware'=>'can:setting-add'
 
                          ]);
     Route::post('/store',[
@@ -286,7 +336,7 @@ Route::prefix('settings')->group(function () {
     Route::get('/edit/{id}',[
         'as'=>'settings.edit',
         'uses'=>'AdminSettingController@edit',
-        
+        'middleware'=>'can:setting-edit'
 
                          ]);
     Route::post('/update/{id}',[
@@ -297,7 +347,7 @@ Route::prefix('settings')->group(function () {
      Route::get('/delete/{id}',[
         'as'=>'settings.delete',
         'uses'=>'AdminSettingController@delete',
-        
+        'middleware'=>'can:setting-delete'
 
                          ]);
     
@@ -307,36 +357,33 @@ Route::prefix('tin')->group(function () {
     Route::get('/',[
         'as'=>'tin.index',
         'uses'=>'AdminTinController@index',
+        'middleware'=>'can:tin-list'
         
-                         ]);
+        ]);
     Route::get('/create',[
         'as'=>'tin.create',
         'uses'=>'AdminTinController@create',
-        
-
-                         ]);
+        'middleware'=>'can:tin-add'
+        ]);
     Route::post('/store',[
         'as'=>'tin.store',
         'uses'=>'AdminTinController@store'
-        
-                         ]);
+        ]);
     Route::get('/edit/{id}',[
         'as'=>'tin.edit',
         'uses'=>'AdminTinController@edit',
-        
-
-                         ]);
+        'middleware'=>'can:tin-edit'
+        ]);
     Route::post('/update/{id}',[
         'as'=>'tin.update',
         'uses'=>'AdminTinController@update'
-                         ]);
+        ]);
 
      Route::get('/delete/{id}',[
         'as'=>'tin.delete',
         'uses'=>'AdminTinController@delete',
-        
-
-                         ]);
+        'middleware'=>'can:tin-delete'
+        ]);
     
 });
 Route::prefix('UserContact')->group(function(){
@@ -348,6 +395,29 @@ Route::prefix('UserContact')->group(function(){
         'as'=>'contact.post',
         'uses'=>'Contact@post'
     ]);
+});
+Route::prefix('Bài viết')->group(function(){
+    Route::get('/Bai viet/{id}', [
+        'as'=>'post.detail',
+        'uses'=>'PostingController@index'
+    ]);
+    Route::get('/Đăng bài', [
+        'as'=>'post.create',
+        'uses'=>'PostingController@create'
+    ]);
+    Route::post('/Đăng bài', [
+        'as'=>'post.store',
+        'uses'=>'PostingController@store'
+    ]);
+Route::prefix('UserBlog')->group(function(){
+    Route::get('/', [
+        'as'=>'blog.index',
+        'uses'=>'Blog@index'
+    ]);
+    // Route::post('/post-contact', [
+    //     'as'=>'contact.post',
+    //     'uses'=>'Contact@post'
+    // ]);
 });
 //Role
 Route::prefix('roles')->group(function () {
@@ -376,5 +446,12 @@ Route::prefix('roles')->group(function () {
         'as'=>'roles.delete',
         'uses'=>'AdminRoleController@delete'
                          ]);
-    
+                        });
+});
+//Search
+Route::prefix('Search')->group(function () {
+    Route::post('/',[
+        'as'=>'search',
+        'uses'=>'SearchController@search'
+                         ]);
 });
