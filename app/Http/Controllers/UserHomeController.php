@@ -40,8 +40,9 @@ class UserHomeController extends Controller
         $tinnew=$this->posting->latest()->take(3)->get();
          $slider=$this->slider->all();
          $postings= Tin::all();
+         $blogs=Blogs::all();
         //  dd($postings->images->name);
-        return view('UserHome.pages.home',compact('slider', 'postings','tinnew','needs'));
+        return view('UserHome.pages.home',compact('slider','blogs', 'postings','tinnew','needs'));
     }
     public function login()
     {
