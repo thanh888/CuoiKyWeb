@@ -23,8 +23,8 @@ class UserHomeController extends Controller
     public function index()
     {
         $blogs = Blogs::all()->take(3);
-         $slider=$this->slider->all();
-         $postings= Tin::all();
+        $slider=$this->slider->all();
+        $postings= Tin::all();
         //  dd($postings->images->name);
         return view('UserHome.pages.home',compact('slider', 'postings','blogs'));
     }
