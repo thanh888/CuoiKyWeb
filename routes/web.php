@@ -322,6 +322,17 @@ Route::prefix('UserHome')->group(function(){
         ]);
     });
 });
+//Search
+Route::prefix('Search')->group(function(){
+    Route::get('/', [
+        'as'=>'search',
+        'uses'=>'SearchController@search'
+    ]);
+    // Route::post('/post-contact', [
+    //     'as'=>'contact.post',
+    //     'uses'=>'Contact@post'
+    // ]);
+});
 //setting
 Route::prefix('settings')->group(function () {
     Route::get('/',[
