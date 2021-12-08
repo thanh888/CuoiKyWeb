@@ -107,24 +107,8 @@
         <ul class="navbar-nav">
 
           <li class="nav-item">
-            <a class="nav-link " href="index.html">Trang chủ</a>
+            <a class="nav-link " href="{{ route('home.index') }}">Trang chủ</a>
           </li>
-
-          <li class="nav-item">
-            <a class="nav-link " href="about.html">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " href="{{ route('contact.index') }}">Contact</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link " href="property-grid.html">Property</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link " href="{{ route('blog.index') }}">Blog</a>
-          </li>
-
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bất động sản</a>
             <div class="dropdown-menu">
@@ -135,10 +119,13 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="blog-grid.html">Blog</a>
+            <a class="nav-link " href="{{ route('blog.index') }}">Blog</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " style="color: #2eca6a;" href="{{ route('post.create') }}"><i class="fas fa-plus ml-1 mr-2" ></i>Đăng tin</a>
+            <a class="nav-link " href="{{ route('contact.index') }}">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " style="color: #2eca6a;" href="{{ route('post.create') }}">Đăng tin</a>
           </li>
           @if (auth()->user())
             <li class="nav-item dropdown">
