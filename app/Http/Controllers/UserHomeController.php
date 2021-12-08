@@ -66,7 +66,7 @@ class UserHomeController extends Controller
             'name'=> $request->name,
             'email'=> $request->email,
         ]);
-        return redirect()->to(route('home.index'));
+        return redirect()->to(route('home.login'));
     }
     public function logout()
     {

@@ -270,6 +270,14 @@ Route::prefix('UserHome')->group(function(){
             'as'=> 'profile.index',
             'uses'=> 'ProfileUserController@index'
         ]);
+        Route::get('/update-profile',[
+            'as'=> 'profile.update',
+            'uses'=> 'ProfileUserController@update'
+        ]);
+        Route::post('/pupdate-profile',[
+            'as'=> 'profile.pupdate',
+            'uses'=> 'ProfileUserController@postupdate'
+        ]);
         Route::get('Postings', [
             'as'=> 'profile.postings',
             'uses'=> 'ProfileUserController@postings'
@@ -411,4 +419,3 @@ Route::prefix('UserBlog')->group(function(){
     // ]);
 });
 //Role
-
